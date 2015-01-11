@@ -14,3 +14,5 @@ Use this command to create the ranklist:
 
 Input the registration number prefix when prompted, and the semester.
 Then, wait...... (It takes a long time to return results).
+
+I've written a blog post on how I wrote this script. It's [here](http://sourya.svbtle.com/ranklist-generator).
