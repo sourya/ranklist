@@ -108,7 +108,7 @@ while i < len(reglist):
 	ranklist.append((roll, sgpa, cgpa))
 	#print roll, " ", sgpa, " ", cgpa
 
-	time.delay(2)#because the server appears to not respond if queries are made back-to-back without any delay
+	time.sleep(2)#because the server appears to not respond if queries are made back-to-back without any delay
 	i += 1
 
 #print ranklist
