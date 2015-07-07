@@ -95,7 +95,6 @@ while i < len(reglist):
 		continue
 
 	soup = BS(s.text)
-	#print s.text
 
 	try:
 		roll = str(soup.find(id="lblSRollNo").text)
