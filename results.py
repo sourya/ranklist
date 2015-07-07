@@ -52,7 +52,7 @@ headers = {
 	'Accept-Language': 'en-US,en;q=0.8,hi;q=0.6'
 }
 
-data_raita = {
+post_data_page1 = {
 	"ToolkitScriptManager1_HiddenField": "",
 	"__EVENTTARGET": "",
 	"__EVENTARGUMENT": "",
@@ -62,7 +62,7 @@ data_raita = {
 	'btnimgShow.y': '10'
 }
 
-data_soup = {
+post_data_page2 = {
 	"ToolkitScriptManager1_HiddenField": "",
 	"__EVENTTARGET": "",
 	"__EVENTARGUMENT": "",
@@ -75,22 +75,22 @@ data_soup = {
 
 while i < len(reglist):
 	try:
-		bawasir = getState(url)
+		current_state = getState(url)
 	except:
 		continue
-	data_raita['__VIEWSTATE'] = bawasir
-	data_raita['txtRegno'] = start + str(reglist[i])
+	post_data_page1['__VIEWSTATE'] = current_state
+	post_data_page1['txtRegno'] = start + str(reglist[i])
 	try:
-		state = getState(url, data=data_raita, headers=headers)
+		state = getState(url, data=post_data_page1, headers=headers)
 	except:
 		continue
 
-	data_soup['__VIEWSTATE'] = state
-	data_soup['ddlSemester'] = sem
-	data_soup['txtRegno'] = start + reglist[i]
+	post_data_page2['__VIEWSTATE'] = state
+	post_data_page2['ddlSemester'] = sem
+	post_data_page2['txtRegno'] = start + reglist[i]
 
 	try:
-		s = requests.post(url, headers=headers, data=data_soup)
+		s = requests.post(url, headers=headers, data=post_data_page2)
 	except:
 		continue
 
@@ -106,12 +106,9 @@ while i < len(reglist):
 		continue
 
 	ranklist.append((roll, sgpa, cgpa))
-	#print roll, " ", sgpa, " ", cgpa
 
 	time.sleep(2)#because the server appears to not respond if queries are made back-to-back without any delay
 	i += 1
-
-#print ranklist
 
 ranklist.sort(cmp = cmpsgpa, reverse=True)
 c = 1
